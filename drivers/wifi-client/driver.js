@@ -479,19 +479,11 @@ class UnifiDriver extends Homey.Driver {
             // Update firstPollDone, as we successfully received devices
             this.firstPollDone = true;
         })
-<<<<<<< HEAD
-            .catch(err => {
-                Homey.app.debug('Error while fetching client list:');
-                Homey.app.debug(err);
-                this.disconnect();
-            });
-=======
         .catch(err => {
             Homey.app.debug('Error while fetching client list:');
             Homey.app.debug(err);
             //this.disconnect();
         });
->>>>>>> 030a58b2354f2191ff15de26ceb07f246ce475e2
     }
 
     updateAccessPointList() {
@@ -510,19 +502,11 @@ class UnifiDriver extends Homey.Driver {
             })
             this.updateLastPoll();
         })
-<<<<<<< HEAD
-            .catch(err => {
-                Homey.app.debug('Error while fetching ap list');
-                Homey.app.debug(err);
-                this.disconnect();
-            });
-=======
         .catch(err => {
             Homey.app.debug('Error while fetching ap list');
             Homey.app.debug(err);
             //this.disconnect();
         });
->>>>>>> 030a58b2354f2191ff15de26ceb07f246ce475e2
     }
 
     updateUsergroupList() {

@@ -9,7 +9,7 @@
     "nl": "Beveilig je huis met aanwezigheidsdetectie op basis van (wifi) clients aangesloten op de UniFi Controller",
     "es": "Proteja su hogar con detección de presencia basada en clientes (wifi) conectados al controlador UniFi"
   },
-  "version": "2.1.2",
+  "version": "2.1.3",
   "compatibility": ">=1.5.0",
   "author": {
     "name": "Stèphan Eizinga",
@@ -34,9 +34,7 @@
       }
     }
   },
-  "category": [
-    "security"
-  ],
+  "category": ["security"],
   "bugs": {
     "url": "https://github.com/steffjenl/com.ubnt.unifi/issues"
   },
@@ -736,11 +734,7 @@
           },
           {
             "id": "sensor",
-            "capabilities": [
-              "alarm_connected",
-              "measure_signal",
-              "measure_rssi"
-            ],
+            "capabilities": ["alarm_connected", "measure_signal", "measure_rssi"],
             "options": {
               "icons": {
                 "alarm_connected": "assets/connected.svg",
@@ -770,11 +764,7 @@
         "small": "drivers/wifi-client/assets/images/small.jpg"
       },
       "class": "sensor",
-      "capabilities": [
-        "alarm_connected",
-        "measure_rssi",
-        "measure_signal"
-      ],
+      "capabilities": ["alarm_connected", "measure_rssi", "measure_signal"],
       "pair": [
         {
           "id": "list_clients",
@@ -803,9 +793,7 @@
           },
           {
             "id": "sensor",
-            "capabilities": [
-              "alarm_connected"
-            ],
+            "capabilities": ["alarm_connected"],
             "options": {
               "icons": {
                 "alarm_connected": "assets/connected.svg"
@@ -833,9 +821,7 @@
         "small": "drivers/cable-client/assets/images/small.jpg"
       },
       "class": "sensor",
-      "capabilities": [
-        "alarm_connected"
-      ],
+      "capabilities": ["alarm_connected"],
       "pair": [
         {
           "id": "list_clients",
