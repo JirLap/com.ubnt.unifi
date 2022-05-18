@@ -65,9 +65,9 @@ class UnifiApp extends Homey.App {
         const args = Array.prototype.slice.call(arguments);
         args.unshift('[debug]');
 
-        if (Homey.env.DEBUG === 'true') {
-            Homey.app.log(args.join(' '));
-        }
+        //if (Homey.env.DEBUG === 'true') {
+        Homey.app.log(args.join(' '));
+        //}
 
         Homey.ManagerApi.realtime('com.ubnt.unifi.debug', args.join(' '));
     }

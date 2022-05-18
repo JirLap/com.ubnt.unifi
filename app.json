@@ -50,7 +50,7 @@
     "alarm_connected": {
       "type": "boolean",
       "title": {
-        "en": "Connection state",
+        "en": "Disconnected",
         "nl": "Verbindingsstatus",
         "es": "Estado de Verbindings"
       },

@@ -42,7 +42,7 @@ class UnifiWifiClientDevice extends Homey.Device {
             if (key == 'alarm_connected') {
                 let deviceTrigger = 'wifi_client_connected';
                 let conditionTrigger = 'a_client_connected';
-                if (value === false) {
+                if (value === true) {
                     deviceTrigger = 'wifi_client_disconnected';
                     conditionTrigger = 'a_client_disconnected';
                     tokens = {}
@@ -71,7 +71,7 @@ class UnifiWifiClientDevice extends Homey.Device {
         this._online = true;
 
         this.state = state;
-        this._updateProperty('alarm_connected', true);
+        this._updateProperty('alarm_connected', false);
         this._updateProperty('measure_signal', state['signal'])
         this._updateProperty('measure_rssi', state['rssi'])
 
@@ -92,11 +92,11 @@ class UnifiWifiClientDevice extends Homey.Device {
 
     setOffline() {
         this._online = false;
-        if (this.getCapabilityValue('alarm_connected') == false) return;
+        if (this.getCapabilityValue('alarm_connected') == true) return;
 
         this.log(`[${this.name}] Set device to offline`)
         this.state.ap_mac = null;
-        this._updateProperty('alarm_connected', false);
+        this._updateProperty('alarm_connected', true);
     }
 
     isOnline() {
