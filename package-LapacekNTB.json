@@ -1,12 +1,9 @@
 {
   "name": "com.ubnt.unifi",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "presence detection based on (wifi) clients connected to the UniFi Controller",
   "main": "app.js",
   "dependencies": {
-    "@sentry/node": "^7.0.0",
-    "@sentry/tracing": "^7.0.0",
-    "homey-log": "1.0.6",
     "ubnt-unifi": "github:steffjenl/ubnt-unifi#master"
   },
   "scripts": {

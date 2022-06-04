@@ -1,6 +1,8 @@
 "use strict";
 
 const Homey = require('homey')
+//const { Log } = require('homey-log');
+const Log = require('homey-log').Log;
 const Settings = Homey.ManagerSettings;
 
 const _settingsKey = 'com.ubnt.unifi.settings'
@@ -8,11 +10,13 @@ const _settingsKey = 'com.ubnt.unifi.settings'
 class UnifiApp extends Homey.App {
 
     onInit() {
+        //this.homeyLog = new Log({ homey: this.homey });
+        //throw new Error("Start Sentry log");
         this.log('com.ubnt.unifi started...');
         this.setStatus('Offline');
         this.initSettings();
 
-        Homey.app.debug('- Loaded settings', this.appSettings)
+        //Homey.app.debug('- Loaded settings', this.appSettings)
     }
 
     initSettings() {
