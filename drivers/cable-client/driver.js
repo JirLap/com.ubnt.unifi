@@ -56,7 +56,7 @@ class UnifiDriver extends Homey.Driver {
     _initialize() {
         // Intialization is done, start the pollers.
         Homey.app.debug('initialize pollers');
-        setTimeout(function() {
+        setTimeout(function () {
             this._registerFlows();
             this.initializeConnection();
         }.bind(this), 100);
@@ -105,13 +105,13 @@ class UnifiDriver extends Homey.Driver {
         });
 
         if (this.driverSettings['useproxy'] !== 'true') {
-             // Monkeypatch the _url method.
-             this.unifi._url = function(path) {
-                 if (path.indexOf('/') === 0) {
-                     return this.controller.href + path.substring(1);
-                 }
-                 return `${this.controller.href}api/s/${this.opts.site}/${path}`;
-             }
+            // Monkeypatch the _url method.
+            this.unifi._url = function (path) {
+                if (path.indexOf('/') === 0) {
+                    return this.controller.href + path.substring(1);
+                }
+                return `${this.controller.href}api/s/${this.opts.site}/${path}`;
+            }
         }
 
         this.unifi.on('ctrl.connect', () => {
@@ -129,14 +129,14 @@ class UnifiDriver extends Homey.Driver {
         });
 
         let that = this;  // make reference to driver
-        this.unifi.on('**', function(data) {
+        this.unifi.on('**', function (data) {
             Homey.app.debug('EVENT:', this.event, data);
         });
         this.unifi.on('ctrl.error', data => {
             Homey.app.debug('Error: ', data.error, data);
             that.disconnect(); // The regular interval will reconnect.
         });
-        this.unifi.on('wu.*', function(data) {
+        this.unifi.on('wu.*', function (data) {
             that.getDevices().forEach(device => {
                 if (data.user == device.getData().id) {
                     device.triggerEvent(this.event, data);
@@ -181,13 +181,13 @@ class UnifiDriver extends Homey.Driver {
 
         // Register device triggers
         triggers = [
-
+            "cable_client_connected"
         ];
         this._registerFlow(triggers, Homey.FlowCardTriggerDevice);
 
         // Register conditions
         triggers = [
-
+            "cable_client_connected"
         ];
         triggers.forEach(key => {
             Homey.app.debug(`- flow condition.${key}`);
@@ -201,7 +201,7 @@ class UnifiDriver extends Homey.Driver {
                     .getArgument(arg)
                     .registerAutocompleteListener((query, args) => {
                         let devices = [];
-                        devices.sort((a,b) => { return a.name > b.name; })
+                        devices.sort((a, b) => { return a.name > b.name; })
                         return Promise.resolve(devices);
                     })
             });
@@ -211,7 +211,7 @@ class UnifiDriver extends Homey.Driver {
 
             Homey.app.debug('- Registering runListener for', flow);
             this.flowCards[flow]
-                .registerRunListener(( args, state, callback) => {
+                .registerRunListener((args, state, callback) => {
                     Homey.app.debug(`${flow} has been triggered`);
 
                     if (args.accessPoint.id === state.ap_mac) {
@@ -315,7 +315,7 @@ class UnifiDriver extends Homey.Driver {
         })
     }
 
-    updateClientList () {
+    updateClientList() {
         Homey.app.debug('updateClientList called');
         this.unifi.get('stat/sta').then(res => {
             let devices = {}
@@ -347,15 +347,15 @@ class UnifiDriver extends Homey.Driver {
             // Update firstPollDone, as we successfully received devices
             this.firstPollDone = true;
         })
-        .catch(err => {
-            Homey.app.debug('Error while fetching client list:');
-            Homey.app.debug(err);
-            //this.disconnect();
-        });
+            .catch(err => {
+                Homey.app.debug('Error while fetching client list:');
+                Homey.app.debug(err);
+                //this.disconnect();
+            });
     }
 
     // this is the easiest method to overwrite, when only the template 'Drivers-Pairing-System-Views' is being used.
-    onPairListDevices( data, callback ) {
+    onPairListDevices(data, callback) {
         let devices = [];
         for (var id in this.onlineClientList) {
             devices.push({
@@ -384,9 +384,9 @@ class UnifiDriver extends Homey.Driver {
 
         // For pairing, also get all known wifi devices
         this.unifi.get('stat/alluser?within=24')
-            .then( res => {
+            .then(res => {
                 res.data.forEach(client => {
-                    if (!client.is_wired || typeof this.onlineClientList[ client.mac ] !== 'undefined' ) return;
+                    if (!client.is_wired || typeof this.onlineClientList[client.mac] !== 'undefined') return;
                     Homey.app.debug(`Got offline cable-client back ${client.name}/${client.hostname} with mac ${client.mac}`)
 
                     let name = client.name
@@ -416,7 +416,7 @@ class UnifiDriver extends Homey.Driver {
 
         if (!this.initialized) return;
 
-        setTimeout(function() {
+        setTimeout(function () {
             this.disconnect();
             this.initializeConnection();
         }.bind(this), 100);
@@ -446,7 +446,7 @@ class UnifiDriver extends Homey.Driver {
     }
 }
 
-Set.prototype.difference = function(setB) {
+Set.prototype.difference = function (setB) {
     var difference = new Set(this);
     for (var elem of setB) {
         difference.delete(elem);
